@@ -80,6 +80,10 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
+  if client.name == "sqls" then
+    require('sqls').on_attach(client, bufnr)
+  end
+
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then
