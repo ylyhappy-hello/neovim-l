@@ -35,3 +35,16 @@ vim.cmd [[
 --   autocmd!
 --   autocmd BufWritePre * lua vim.lsp.buf.formatting()
 -- augroup end
+-- some useful autocmd
+
+-- while leave insert mode change input method to en
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+    pattern = { "*" },
+    callback = function()
+        local input_status = tonumber(vim.fn.system("fcitx5-remote"))
+        if input_status == 2 then
+            vim.fn.system("fcitx5-remote -c")
+        end
+    end,
+})
+
