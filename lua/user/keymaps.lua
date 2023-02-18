@@ -26,8 +26,8 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+keymap("n", "<C-Down>", ":resize -2<CR>", opts)
+keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
@@ -71,3 +71,5 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Sqls Switch Database
 
 keymap('n', 'sd', '<cmd>SqlsSwitchDatabase<cr>',opts)
+
+keymap('n','K','<NOP>',opts)
