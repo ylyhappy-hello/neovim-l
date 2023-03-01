@@ -3,6 +3,7 @@ local servers = {
 	-- "cssls",
 	-- "html",
 	"tsserver",
+  "rnix",
   "volar",
 	"pyright",
 	-- "bashls",
