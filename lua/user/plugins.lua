@@ -101,6 +101,10 @@ return packer.startup(function(use)
    -- deprecated sql lsp write by go
   use 'nanotee/sqls.nvim'
 
+  -- 跳转插件
+  require('leap').add_default_mappings()
+  use 'ggandor/leap.nvim'
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
