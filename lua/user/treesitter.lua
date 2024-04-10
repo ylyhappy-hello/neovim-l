@@ -4,14 +4,19 @@ if not status_ok then
 end
 
 configs.setup({
-  ensure_installed = { "bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java", "yaml", "markdown", "markdown_inline", "nix" }, -- one of "all" or a list of languages
-	ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "css" }, -- list of language that will be disabled
 	},
+  ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "go", "java", "bash", "xml", "query" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = true,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
 	autopairs = {
 		enable = true,
 	},
-	indent = { enable = true, disable = { "python", "css" } },
+	indent = { enable = true, },
 })

@@ -1,35 +1,3 @@
-vim.cmd [[
-  augroup _general_settings
-    autocmd!
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
-    autocmd BufWinEnter * :set formatoptions-=cro
-    autocmd FileType qf set nobuflisted
-  augroup end
-
-  augroup _git
-    autocmd!
-    autocmd FileType gitcommit setlocal wrap
-    autocmd FileType gitcommit setlocal spell
-  augroup end
-
-  augroup _markdown
-    autocmd!
-    autocmd FileType markdown setlocal wrap
-    autocmd FileType markdown setlocal spell
-  augroup end
-
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
-
-  augroup _alpha
-    autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-  augroup end
-]]
-
 -- Autoformat
 -- augroup _lsp
 --   autocmd!
@@ -39,12 +7,24 @@ vim.cmd [[
 
 -- while leave insert mode change input method to en
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-    pattern = { "*" },
-    callback = function()
-        local input_status = tonumber(vim.fn.system("fcitx5-remote"))
-        if input_status == 2 then
-            vim.fn.system("fcitx5-remote -c")
-        end
-    end,
+  pattern = { "*" },
+  callback = function()
+    local input_status = tonumber(vim.fn.system({ "fcitx5-remote" }))
+    if input_status == 2 then
+      vim.fn.system("fcitx5-remote -c")
+    end
+  end,
 })
+-- detect filetype use diff tab spaces
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "java", "xml" },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+
+    vim.cmd("NvimTreeResize 50");
+  end,
+})
+
 
